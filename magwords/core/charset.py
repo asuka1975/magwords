@@ -108,3 +108,18 @@ class StaticCharset:
         i = self.charset.index(char)
         first, count = self.inner_ranges[i]
         return DrawArraysIndirectCommand(count, 0, first, index)
+
+
+class DynamicCharset:
+    def __init__(self, fontfamily: str) -> None:
+        raise NotImplementedError()
+
+    def create_command_convex(self, char: str, index: int) -> DrawArraysIndirectCommand:
+        raise NotImplementedError()
+
+    def create_command_beziers(self, char: str, index: int) -> DrawArraysIndirectCommand:
+        raise NotImplementedError()
+
+    def create_command_inner(self, char: str, index: int) -> DrawArraysIndirectCommand:
+        raise NotImplementedError()
+    
