@@ -1,4 +1,4 @@
-class MagWordsEngine:
+class FontEngine:
     def __init__(self):
         pass
 
