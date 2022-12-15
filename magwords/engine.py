@@ -117,12 +117,6 @@ class FontEngine:
         if self._command_buffers is not None:
             glDeleteBuffers(len(self._command_buffers), self._command_buffers)
             self._command_buffers = None
-        if self.program1 is not None:
-            glDeleteProgram(self.program1.handle)
-            self.program1 = None
-        if self.program2 is not None:
-            glDeleteProgram(self.program2.handle)
-            self.program2 = None
 
     def draw(self):
         glClear(GL_STENCIL_BUFFER_BIT)
