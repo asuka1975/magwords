@@ -94,6 +94,11 @@ class StaticCharset:
         glBufferData(GL_SHADER_STORAGE_BUFFER, ctypes.sizeof(advances_data), advances_data, GL_STATIC_DRAW)
         glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 4, self.advances_ssbo)
 
+    def __del__(self):
+        if self._buffers is not None:
+            glDeleteBuffers(len(self._buffers), self._buffers)
+            self._buffers = None
+
     def create_command_convex(self, char: str, index: int) -> DrawArraysIndirectCommand:
         i = self.charset.index(char)
         first, count = self.convex_ranges[i]
