@@ -5,6 +5,11 @@ class ShaderProgram:
     def __init__(self):
         self.handle = glCreateProgram()
     
+    def __del__(self):
+        if self.handle is not None:
+            glDeleteProgram(self.handle)
+            self.handle = None
+
     def attach_shader(self, content, type, log_always=False):
         shader = glCreateShader(type)
         glShaderSource(shader, [content])
