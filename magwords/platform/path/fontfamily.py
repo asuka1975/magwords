@@ -8,7 +8,7 @@ from os import walk, sep
 
 def getFontsPath(path):
     return [
-        dirpath.replace(sep*2, sep) + "\\" + filename
+        dirpath.replace(sep*2, sep) + sep + filename
             for dirpath, _, filenames in walk(f"{path}") 
                 for filename in filenames 
                     if any(filename.endswith(ext) for ext in ['.ttf', '.otf', '.ttc', '.ttz', '.woff', '.woff2'])
