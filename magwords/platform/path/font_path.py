@@ -6,7 +6,7 @@ try:
 except ModuleNotFoundError:
     raise NotImplementedError()
 
-def get_font_path(family=None, style=None):
+def get_font_path(family: str=None, style: str=None) -> str:
     global system
     if family is None:
         family = system.default_font
