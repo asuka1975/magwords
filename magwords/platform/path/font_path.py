@@ -9,7 +9,7 @@ except ModuleNotFoundError:
 def get_font_path(family: str=None, style: str=None) -> str:
     global system
     if family is None:
-        family = system.default_font
+        family = system.default_font[0]
     if style is None:
-        style = list(system.font_dictionary[family].values())[0] if "Regular" not in system.font_dictionary[family] else "Regular"
+        style = list(system.font_dictionary[family].values())[0] if system.default_font[1] not in system.font_dictionary[family] else system.default_font[1]
     return system.font_dictionary[family][style]
