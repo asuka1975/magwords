@@ -2,7 +2,7 @@ import importlib
 import platform
 
 try:
-    system = importlib.import_module(f".{platform.system().lower()}")
+    system = importlib.import_module(f".{platform.system().lower()}", "magwords.platform.path")
 except ModuleNotFoundError:
     raise NotImplementedError()
 
