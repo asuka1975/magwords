@@ -16,7 +16,7 @@ def create_model_matrice(pos, font_size):
     return glm.mat3(
         font_size, 0, 0,
         0, font_size, 0,
-        *pos, 1
+        pos[0] * font_size, pos[1] * font_size, 1
     )
 
 
@@ -40,7 +40,7 @@ def main():
     engine = magwords.FontEngine(get_font_path(), env)
 
     num_chars = 100
-    mats = glm.array([create_model_matrice((random.random() * 30, -random.random() * 20), 1) for _ in range(num_chars)])
+    mats = glm.array([create_model_matrice((random.random() * 40 - 20, random.random() * 20 - 10), 12) for _ in range(num_chars)])
     glNamedBufferSubData(engine.char_model_vbo, 0, mats.nbytes, mats.ptr)
     
     beziers_commands = (DrawArraysIndirectCommand * len(engine.charset.charset))()
