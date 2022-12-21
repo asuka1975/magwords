@@ -9,7 +9,7 @@ setup(
     name="magwords",
     packages=find_packages(),
     package_data={"magwords" : ["shaders/*"]},
-    version="1.0.0",
+    version="1.0.0a1",
     license="MIT",
     install_requires=["cu2qu", "freetype-py", "glfw", "numpy", "PyGLM", "PyOpenGL", "scipy"],
     author="asuka1975",
