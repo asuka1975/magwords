@@ -17,12 +17,7 @@ void main() {
         0, 1, 0,
         0, 0, 1
     );
-    mat3 move = mat3(
-        1, 0, 0,
-        0, 1, 0,
-        -1 + inch_per_point / window_inch.x * 2, 1 - inch_per_point / window_inch.y * 2 * 12, 1
-    );
     vec3 p = vec3(inch_per_point / window_inch * 2, 1) * (model * vec3(position, 1));
-    p = move * proj * vec3(p.xy, 1);
+    p = proj * vec3(p.xy, 1);
     gl_Position = vec4(p.xy, 0, 1);
 }
