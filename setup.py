@@ -17,6 +17,7 @@ setup(
     url="https://github.com/asuka1975/magwords",
     description="text-rendering library for OpenGL context",
     long_description=description,
+    long_description_content_type="text/markdown",
     keywords="OpenGL FreeType2 TextRendering",
     classifiers=[
         'License :: OSI Approved :: MIT License',
