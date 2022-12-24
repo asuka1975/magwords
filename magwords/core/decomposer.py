@@ -1,4 +1,4 @@
-import cu2qu
+from cu2qu import curve_to_quadratic
 
 __all__ = ["move", "line", "conic", "cubic"]
 
@@ -21,11 +21,9 @@ def conic(c, p, user):
     user["inner"][-1].append(ptuple)
 
 def cubic(c1, c2, p2, user):
+    c1, c2, p2 = to_tuple(c1), to_tuple(c2), to_tuple(p2)
     p1 = user["convex"][-1]
-    p1_ = p1[0] + p1[1] * 1j
-    c1_ = c1[0] + c1[1] * 1j
-    c2_ = c2[0] + c2[1] * 1j
-    p2_ = p2[0] + p2[1] * 1j
-    c0, q1, c3 = cu2qu.cu2qu.cubic_approx_quadratic([p1_, c1_, c2_, p2_], 0.1)
-    user["beziers"].extend([p1, c0, q1, q1, c3, p2])
-    user["inner"][-1].extend([p1, q1, p2])
+    quads = curve_to_quadratic([p1, c1, c2, p2], 0.1)
+    user["convex"].extend(quads[1:])
+    user["beziers"].extend([v for i in range(len(quads)//2) for v in quads[i*2:i*2+3]])
+    user["inner"][-1].extend(quads[::2])
