@@ -10,7 +10,10 @@ class ShaderProgram:
             glDeleteProgram(self.handle)
             self.handle = None
 
-    def attach_shader(self, content, type, log_always=False):
+    def attach_shader(self, shader):
+        glAttachShader(self.handle, shader.handle)
+
+    def attach_shader_from_string(self, content, type, log_always=False):
         shader = glCreateShader(type)
         glShaderSource(shader, [content])
         glCompileShader(shader)
