@@ -15,7 +15,7 @@ class ShaderProgram:
         glShaderSource(shader, [content])
         glCompileShader(shader)
 
-        status = ctypes.c_uint(GL_UNSIGNED_INT)
+        status = ctypes.c_uint()
         glGetShaderiv(shader, GL_COMPILE_STATUS, status)
         if log_always or not status:
             print(glGetShaderInfoLog(shader).decode("utf-8"), file=sys.stderr)
@@ -28,7 +28,7 @@ class ShaderProgram:
 
     def link(self, log_always=False):
         glLinkProgram(self.handle)
-        status = ctypes.c_uint(GL_UNSIGNED_INT)
+        status = ctypes.c_uint()
         glGetProgramiv(self.handle, GL_LINK_STATUS, status)
         if log_always or not status:
             print(glGetProgramInfoLog(self.handle).decode("utf-8"), file=sys.stderr)
