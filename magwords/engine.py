@@ -6,7 +6,7 @@ import glm
 
 from .core.charset import DynamicCharset, StaticCharset, Charset
 from .core.magtypes import Environment, DrawArraysIndirectCommand
-from .gl.shader import ShaderProgram
+from .gl.shader_program import ShaderProgram
 
 class FontEngine:
     LIMIT_NUM_CHARACTERS = 100000
@@ -44,16 +44,16 @@ class FontEngine:
 
         self.program1 = ShaderProgram()
         with open(os.path.join(os.path.dirname(__file__), "shaders", "base.vert"), "r") as f:
-            self.program1.attach_shader(f.read(), GL_VERTEX_SHADER)
+            self.program1.attach_shader_from_string(f.read(), GL_VERTEX_SHADER)
         with open(os.path.join(os.path.dirname(__file__), "shaders", "base.frag"), "r") as f:
-            self.program1.attach_shader(f.read(), GL_FRAGMENT_SHADER)
+            self.program1.attach_shader_from_string(f.read(), GL_FRAGMENT_SHADER)
         self.program1.link()
 
         self.program2 = ShaderProgram()
         with open(os.path.join(os.path.dirname(__file__), "shaders", "bezier.vert"), "r") as f:
-            self.program2.attach_shader(f.read(), GL_VERTEX_SHADER)
+            self.program2.attach_shader_from_string(f.read(), GL_VERTEX_SHADER)
         with open(os.path.join(os.path.dirname(__file__), "shaders", "bezier.frag"), "r") as f:
-            self.program2.attach_shader(f.read(), GL_FRAGMENT_SHADER)
+            self.program2.attach_shader_from_string(f.read(), GL_FRAGMENT_SHADER)
         self.program2.link()
 
         # for environment variables (DPI, window size, etc.)
